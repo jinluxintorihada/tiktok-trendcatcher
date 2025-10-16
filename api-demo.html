@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok API Demo - TrendCatcher</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-back {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-back:hover {
+            background: #5a6268;
+            text-decoration: none;
+            color: white;
+        }
+
+        h1 {
+            color: #ff0050;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .api-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 4px solid #25f4ee;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #25f4ee 0%, #00d4ff 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 244, 238, 0.3);
+        }
+
+        .demo-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .api-response {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        .error {
+            color: #721c24;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success {
+            color: #155724;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .video-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ff0050 0%, #25f4ee 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .video-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #ff0050;
+        }
+
+        .demo-notice {
+            background: #fff3cd;
+            color: #856404;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ffeaa7;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="callback.html" class="nav-back">← Back to Login Result</a>
+
+        <h1>📊 TikTok API Demo</h1>
+        <p class="subtitle">Display API Integration Demonstration</p>
+
+        <div class="demo-notice">
+            <h3>🛠️ Sandbox Environment</h3>
+            <p>This demo uses TikTok's sandbox environment with mock data. In production, this would fetch real trending
+                content from TikTok's API.</p>
+        </div>
+
+        <div class="api-section">
+            <h2>🎯 Available API Demonstrations</h2>
+            <p>Click the buttons below to simulate different TikTok API calls:</p>
+
+            <button class="demo-button" onclick="fetchUserProfile()">👤 Get User Profile</button>
+            <button class="demo-button" onclick="fetchUserVideos()">🎥 Get User Videos</button>
+            <button class="demo-button" onclick="fetchTrendingVideos()">🔥 Get Trending Videos</button>
+            <button class="demo-button" onclick="fetchHashtagData()">🏷️ Get Hashtag Data</button>
+
+            <div id="apiResponse" class="api-response" style="display: none;"></div>
+        </div>
+
+        <div class="api-section">
+            <h2>📈 Trending Content Simulation</h2>
+            <p>This section demonstrates how trending content would be displayed in the TrendCatcher application:</p>
+
+            <button class="demo-button" onclick="loadTrendingContent()">🚀 Load Trending Content</button>
+
+            <div id="trendingContent" style="display: none;">
+                <h3>🔥 Current Trending Videos (Sandbox)</h3>
+                <div id="videoGrid" class="video-grid"></div>
+            </div>
+        </div>
+
+        <div class="api-section">
+            <h2>🔧 API Configuration</h2>
+            <div class="api-response">
+                <strong>Endpoint Base URL:</strong> https://open.tiktokapis.com<br>
+                <strong>Authentication:</strong> Bearer Token (OAuth 2.0)<br>
+                <strong>Available Scopes:</strong><br>
+                - user.info.basic<br>
+                - video.list<br>
+                - video.upload<br>
+                <strong>Rate Limits:</strong> Configured per TikTok API documentation<br>
+                <strong>Environment:</strong> Sandbox (for demo purposes)
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate API response delay
+        function simulateApiCall(callback, delay = 1500) {
+            const responseDiv = document.getElementById('apiResponse');
+            responseDiv.style.display = 'block';
+            responseDiv.className = 'api-response loading';
+            responseDiv.innerHTML = '⏳ Making API request to TikTok servers...';
+
+            setTimeout(callback, delay);
+        }
+
+        // Mock user profile data
+        function fetchUserProfile() {
+            simulateApiCall(() => {
+                const responseDiv = document.getElementById('apiResponse');
+                responseDiv.className = 'api-response success';
+                responseDiv.innerHTML = `
+                    <strong>GET /v2/user/info/</strong><br><br>
+                    {<br>
+                    &nbsp;&nbsp;"data": {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"user": {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"open_id": "sandbox_user_${Math.random().toString(36).substr(2, 10)}",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"union_id": "union_${Math.random().toString(36).substr(2, 8)}",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"avatar_url": "https://example.com/avatar.jpg",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"display_name": "TrendCatcher Demo User",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"bio_description": "Demo account for TrendCatcher testing",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"profile_deep_link": "https://www.tiktok.com/@demo_user",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_verified": false,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"follower_count": 12450,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"following_count": 189<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;},<br>
+                    &nbsp;&nbsp;"error": {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"code": "ok",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"message": "",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"log_id": "20251016${Math.random().toString().substr(2, 10)}"<br>
+                    &nbsp;&nbsp;}<br>
+                    }
+                `;
+            });
+        }
+
+        // Mock user videos data
+        function fetchUserVideos() {
+            simulateApiCall(() => {
+                const responseDiv = document.getElementById('apiResponse');
+                responseDiv.className = 'api-response success';
+                responseDiv.innerHTML = `
+                    <strong>GET /v2/video/list/</strong><br><br>
+                    {<br>
+                    &nbsp;&nbsp;"data": {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"videos": [<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "video_${Math.random().toString(36).substr(2, 12)}",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "Amazing dance trend! #fyp #dance",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"video_description": "Check out this cool dance move",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"duration": 23,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"cover_image_url": "https://example.com/cover1.jpg",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"share_url": "https://www.tiktok.com/@demo/video/123",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"view_count": 15420,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"like_count": 1230,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"comment_count": 89,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"share_count": 45<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;],<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"cursor": "next_page_token_123",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"has_more": true<br>
+                    &nbsp;&nbsp;}<br>
+                    }
+                `;
+            });
+        }
+
+        // Mock trending videos data
+        function fetchTrendingVideos() {
+            simulateApiCall(() => {
+                const responseDiv = document.getElementById('apiResponse');
+                responseDiv.className = 'api-response success';
+                responseDiv.innerHTML = `
+                    <strong>GET /v2/research/trending/videos/</strong><br><br>
+                    {<br>
+                    &nbsp;&nbsp;"data": {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"trending_videos": [<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"video_id": "trending_${Math.random().toString(36).substr(2, 10)}",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hashtags": ["#fyp", "#viral", "#trending"],<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"view_count": 2500000,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"like_count": 450000,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"trend_score": 98.5,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"category": "Entertainment"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                    &nbsp;&nbsp;}<br>
+                    }
+                `;
+            });
+        }
+
+        // Mock hashtag data
+        function fetchHashtagData() {
+            simulateApiCall(() => {
+                const responseDiv = document.getElementById('apiResponse');
+                responseDiv.className = 'api-response success';
+                responseDiv.innerHTML = `
+                    <strong>GET /v2/research/hashtag/info/</strong><br><br>
+                    {<br>
+                    &nbsp;&nbsp;"data": {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"hashtag": {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "fyp",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"video_count": 25000000,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"view_count": 8500000000,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"trending_rank": 1,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"category": "General",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"growth_rate": "+15.3%"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;}<br>
+                    }
+                `;
+            });
+        }
+
+        // Load trending content simulation
+        function loadTrendingContent() {
+            const trendingDiv = document.getElementById('trendingContent');
+            const videoGrid = document.getElementById('videoGrid');
+
+            trendingDiv.style.display = 'block';
+            videoGrid.innerHTML = '<div class="loading">🔄 Loading trending videos...</div>';
+
+            setTimeout(() => {
+                const mockVideos = [
+                    { title: "Epic Dance Challenge", views: "2.5M", likes: "450K", comments: "12K", hashtags: "#fyp #dance #viral" },
+                    { title: "Cooking Life Hack", views: "1.8M", likes: "320K", comments: "8.5K", hashtags: "#cooking #lifehack #food" },
+                    { title: "Pet Compilation", views: "3.2M", likes: "680K", comments: "15K", hashtags: "#pets #funny #cute" },
+                    { title: "Fashion Transformation", views: "1.2M", likes: "280K", comments: "6.8K", hashtags: "#fashion #style #outfit" },
+                    { title: "Tech Review", views: "950K", likes: "145K", comments: "3.2K", hashtags: "#tech #review #gadgets" },
+                    { title: "Travel Adventure", views: "2.1M", likes: "390K", comments: "11K", hashtags: "#travel #adventure #explore" }
+                ];
+
+                videoGrid.innerHTML = mockVideos.map((video, index) => `
+                    <div class="video-card">
+                        <div class="video-thumbnail">🎥</div>
+                        <h4>${video.title}</h4>
+                        <p style="color: #666; font-size: 0.9em;">${video.hashtags}</p>
+                        <div class="video-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">${video.views}</div>
+                                <div>Views</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${video.likes}</div>
+                                <div>Likes</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${video.comments}</div>
+                                <div>Comments</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }, 1500);
+        }
+    </script>
+</body>
+
+</html>
