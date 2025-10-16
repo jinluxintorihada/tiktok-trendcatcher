@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - TikTok TrendCatcher</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-back {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-back:hover {
+            background: #5a6268;
+            text-decoration: none;
+            color: white;
+        }
+
+        h1 {
+            color: #ff0050;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .language-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: #e9ecef;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: #ff0050;
+            color: white;
+        }
+
+        .tab-button:hover {
+            background: #ff0050;
+            color: white;
+        }
+
+        .language-content {
+            display: none;
+        }
+
+        .language-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: #25f4ee;
+            border-bottom: 2px solid #25f4ee;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 25px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .effective-date {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        ul,
+        ol {
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="nav-back">← Back to Main Page</a>
+
+        <h1>📋 Terms of Service</h1>
+        <p class="subtitle">服务条款 | 利用規約</p>
+
+        <div class="effective-date">
+            Effective Date: October 16, 2025 | 生效日期: 2025年10月16日 | 施行日: 2025年10月16日
+        </div>
+
+        <div class="language-tabs">
+            <button class="tab-button active" onclick="showLanguage('english')">🇺🇸 English</button>
+            <button class="tab-button" onclick="showLanguage('chinese')">🇨🇳 中文</button>
+            <button class="tab-button" onclick="showLanguage('japanese')">🇯🇵 日本語</button>
+        </div>
+
+        <!-- English Version -->
+        <div id="english" class="language-content active">
+            <h2>Terms of Service</h2>
+
+            <div class="section">
+                <h3>1. Application Purpose</h3>
+                <p>TikTok TrendCatcher is an internal team tool designed specifically for monitoring and analyzing
+                    trending videos, music, and hashtags on the TikTok platform. This application serves as a research
+                    and analysis tool for authorized team members only.</p>
+            </div>
+
+            <div class="section">
+                <h3>2. Scope of Use</h3>
+                <ul>
+                    <li>This application is exclusively for internal use by authorized team members</li>
+                    <li>Data obtained through this tool must not be used for commercial purposes outside the
+                        organization</li>
+                    <li>Users must comply with TikTok's terms of service and community guidelines</li>
+                    <li>Users must respect intellectual property rights and privacy of content creators</li>
+                    <li>Any violation of platform policies may result in immediate access revocation</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>3. Data Collection and Usage</h3>
+                <ul>
+                    <li>Only publicly available TikTok data is collected through official APIs</li>
+                    <li>Data is used solely for internal trend analysis and research purposes</li>
+                    <li>No personal user information or private data is stored or shared</li>
+                    <li>All data collection complies with applicable data protection laws</li>
+                    <li>Data retention periods are limited and clearly defined</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>4. User Responsibilities</h3>
+                <ul>
+                    <li>Maintain confidentiality of access credentials and team data</li>
+                    <li>Use the tool only for authorized research and analysis purposes</li>
+                    <li>Report any security concerns or unauthorized access immediately</li>
+                    <li>Comply with all applicable laws and regulations</li>
+                    <li>Respect rate limits and API usage guidelines</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>5. Limitation of Liability</h3>
+                <p>Users of this tool must adhere to relevant laws, regulations, and platform policies. The development
+                    team assumes no responsibility for any consequences arising from misuse of this application. Users
+                    agree to indemnify and hold harmless the development team from any claims or damages resulting from
+                    their use of the tool.</p>
+            </div>
+
+            <div class="section">
+                <h3>6. Modifications</h3>
+                <p>These terms may be updated periodically. Users will be notified of significant changes and continued
+                    use constitutes acceptance of updated terms.</p>
+            </div>
+        </div>
+
+        <!-- Chinese Version -->
+        <div id="chinese" class="language-content">
+            <h2>服务条款</h2>
+
+            <div class="section">
+                <h3>1. 应用目的</h3>
+                <p>TikTok TrendCatcher 是一款专为内部团队使用的工具，专门用于监控和分析 TikTok 平台上的热门视频、音乐和话题标签趋势。本应用仅作为授权团队成员的研究和分析工具。</p>
+            </div>
+
+            <div class="section">
+                <h3>2. 使用范围</h3>
+                <ul>
+                    <li>本应用仅供授权团队成员内部使用</li>
+                    <li>通过本工具获取的数据不得用于组织外的商业目的</li>
+                    <li>用户必须遵守 TikTok 的服务条款和社区准则</li>
+                    <li>用户必须尊重内容创作者的知识产权和隐私权</li>
+                    <li>任何违反平台政策的行为可能导致立即撤销访问权限</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>3. 数据收集和使用</h3>
+                <ul>
+                    <li>仅通过官方 API 收集公开可用的 TikTok 数据</li>
+                    <li>数据仅用于内部趋势分析和研究目的</li>
+                    <li>不存储或分享任何个人用户信息或私人数据</li>
+                    <li>所有数据收集均符合适用的数据保护法律</li>
+                    <li>数据保留期限有限且明确定义</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>4. 用户责任</h3>
+                <ul>
+                    <li>维护访问凭据和团队数据的机密性</li>
+                    <li>仅将工具用于授权的研究和分析目的</li>
+                    <li>立即报告任何安全问题或未经授权的访问</li>
+                    <li>遵守所有适用的法律法规</li>
+                    <li>尊重速率限制和 API 使用准则</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>5. 责任限制</h3>
+                <p>使用本工具的用户必须遵守相关法律法规和平台政策。开发团队不对因误用本应用而产生的任何后果承担责任。用户同意对因使用本工具而产生的任何索赔或损害，为开发团队进行赔偿并使其免受损害。</p>
+            </div>
+
+            <div class="section">
+                <h3>6. 条款修改</h3>
+                <p>这些条款可能会定期更新。用户将收到重大变更的通知，继续使用即表示接受更新的条款。</p>
+            </div>
+        </div>
+
+        <!-- Japanese Version -->
+        <div id="japanese" class="language-content">
+            <h2>利用規約</h2>
+
+            <div class="section">
+                <h3>1. アプリケーションの目的</h3>
+                <p>TikTok TrendCatcher は、TikTok
+                    プラットフォーム上のトレンド動画、音楽、ハッシュタグを監視・分析するために特別に設計された内部チーム専用ツールです。本アプリケーションは、認可されたチームメンバーのみの研究・分析ツールとして機能します。
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>2. 使用範囲</h3>
+                <ul>
+                    <li>本アプリケーションは認可されたチームメンバーの内部使用専用です</li>
+                    <li>本ツールを通じて取得したデータは組織外での商業目的に使用してはなりません</li>
+                    <li>ユーザーは TikTok の利用規約とコミュニティガイドラインを遵守する必要があります</li>
+                    <li>ユーザーはコンテンツクリエイターの知的財産権とプライバシーを尊重する必要があります</li>
+                    <li>プラットフォームポリシーの違反は即座にアクセス権の取り消しにつながる可能性があります</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>3. データ収集と使用</h3>
+                <ul>
+                    <li>公式 API を通じて公開されている TikTok データのみを収集します</li>
+                    <li>データは内部のトレンド分析と研究目的にのみ使用されます</li>
+                    <li>個人ユーザー情報やプライベートデータは保存・共有されません</li>
+                    <li>すべてのデータ収集は適用されるデータ保護法に準拠しています</li>
+                    <li>データ保持期間は限定的で明確に定義されています</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>4. ユーザーの責任</h3>
+                <ul>
+                    <li>アクセス認証情報とチームデータの機密性を維持する</li>
+                    <li>認可された研究・分析目的にのみツールを使用する</li>
+                    <li>セキュリティ上の懸念や不正アクセスを直ちに報告する</li>
+                    <li>すべての適用される法律・規制を遵守する</li>
+                    <li>レート制限と API 使用ガイドラインを尊重する</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>5. 責任の制限</h3>
+                <p>本ツールの使用者は関連する法律、規制、プラットフォームポリシーを遵守する必要があります。開発チームは本アプリケーションの誤用から生じるいかなる結果についても責任を負いません。ユーザーは、本ツールの使用から生じるいかなる請求や損害についても、開発チームを補償し、無害に保つことに同意します。
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>6. 規約の変更</h3>
+                <p>これらの規約は定期的に更新される場合があります。ユーザーには重要な変更について通知され、継続使用は更新された規約への同意を意味します。</p>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h3>Contact Information | 联系信息 | 連絡先情報</h3>
+            <p><strong>Development Team:</strong> TrendCatcher Development Team<br>
+                <strong>GitHub Repository:</strong> <a
+                    href="https://github.com/jinluxintorihada/tiktok-trendcatcher">tiktok-trendcatcher</a><br>
+                <strong>Email:</strong> For inquiries regarding these terms
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showLanguage(language) {
+            // Hide all language content
+            const contents = document.querySelectorAll('.language-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Show selected language content
+            document.getElementById(language).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
